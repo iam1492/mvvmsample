@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MVVMSample</string>
+    <string name="clip_label">클립보드 복사</string>
+    <string name="clipboard_copied">"단축URL: \"%s\"이 클립보드로 복사됐습니다.</string>
+    <string name="enter_url">Url 을 입력해주세요</string>
+    <string name="convert">변환하기</string>
+    <string name="converted_url">변환된 Url</string>
+    <string name="copy_to_clipboard">클립보드로 복사</string>
+    <string name="open_web">브라우져 열기</string>
+    <string name="error_validate_email">옳바른 포맷이 아닙니다.</string>
 </resources>

@@ -1,103 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
         <variable
-          name="shortenUrlViewModel"
-          type="com.daangn.www.mvvmsample.viewmodel.ShortenUrlViewModel"/>
+            name="shortenUrlViewModel"
+            type="com.daangn.www.mvvmsample.viewmodel.ShortenUrlViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      tools:context=".view.ShortenUrlActivity">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.ShortenUrlActivity">
 
-        <com.google.android.material.textfield.TextInputLayout
-          android:id="@+id/textInputLayout"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
-          android:layout_marginTop="8dp"
-          android:layout_marginEnd="16dp"
-          android:textColor="#444"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/input_label">
-
-            <com.google.android.material.textfield.TextInputEditText
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:hint="hint" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-          android:id="@+id/input_label"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
-          android:layout_marginTop="24dp"
-          android:text="Url을 입력해주세요"
-          android:textSize="15sp"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/urlEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/enter_url"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:met_autoValidate="true"
+            app:met_floatingLabel="normal" />
 
         <Button
-          android:id="@+id/button"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
-          android:layout_marginTop="16dp"
-          android:layout_marginEnd="16dp"
-          android:text="변환하기"
-          android:textSize="17sp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="@string/convert"
+            android:textSize="17sp"
+            android:onClick="@{() -> shortenUrlViewModel.clickConvert()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/urlEditText" />
 
         <TextView
-          android:id="@+id/result_label"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
-          android:layout_marginTop="24dp"
-          android:text="변환된 Url"
-          android:textSize="15sp"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/button" />
+            android:id="@+id/result_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/converted_url"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button" />
 
         <TextView
-          android:id="@+id/result_url"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
-          android:layout_marginTop="16dp"
-          android:layout_marginEnd="8dp"
-          android:textColor="#444"
-          android:textSize="17sp"
-          android:text="@{shortenUrlViewModel.shortenUrl}"
-          app:layout_constraintEnd_toStartOf="@+id/btn_copy_to_clipboard"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/result_label"
-          tools:text="googl.gl/xTdnbG" />
+            android:id="@+id/result_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{shortenUrlViewModel.shortenUrl}"
+            android:textColor="#444"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/result_label"
+            tools:text="googl.gl/xTdnbG" />
 
         <Button
-          android:id="@+id/btn_copy_to_clipboard"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="16dp"
-          android:text="클립보드로 복사"
-          app:layout_constraintBottom_toBottomOf="@+id/result_url"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintTop_toTopOf="@+id/result_url" />
+            android:id="@+id/btn_copy_to_clipboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> shortenUrlViewModel.clickCopyToClipboard()}"
+            android:text="@string/copy_to_clipboard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/result_url" />
+
+        <Button
+            android:id="@+id/btn_open_web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> shortenUrlViewModel.clickOpenWeb()}"
+            android:text="@string/open_web"
+            app:layout_constraintStart_toEndOf="@+id/btn_copy_to_clipboard"
+            app:layout_constraintTop_toBottomOf="@+id/result_url" />
 
         <androidx.constraintlayout.widget.Group
-          android:id="@+id/visibility_group"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:visibility="visible"
-          app:constraint_referenced_ids="btn_copy_to_clipboard,result_label,result_url" />
+            android:id="@+id/visibility_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{shortenUrlViewModel.showResult ? View.VISIBLE : View.GONE}"
+            app:constraint_referenced_ids="btn_copy_to_clipboard,result_label,result_url,btn_open_web" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

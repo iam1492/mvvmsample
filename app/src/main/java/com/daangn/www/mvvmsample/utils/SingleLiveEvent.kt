@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.daangn.www.mvvmsample.viewmodel
+package com.daangn.www.mvvmsample.utils
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
