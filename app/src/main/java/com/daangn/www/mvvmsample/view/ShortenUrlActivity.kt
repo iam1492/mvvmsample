@@ -30,7 +30,7 @@ class ShortenUrlActivity : BaseActivity<ActivityShortenUrlBinding>() {
         })
 */
 
-        shortenUrlViewModel.observeConvertToShorenUrl().observe(this, Observer {
+        shortenUrlViewModel.observeConvertToShortenUrl().observe(this, Observer {
             shortenUrlViewModel.getShortenUrl(viewDataBinding.urlEditText.text.toString())
         })
 

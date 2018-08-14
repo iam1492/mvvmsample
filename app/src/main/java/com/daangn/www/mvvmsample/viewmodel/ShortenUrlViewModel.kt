@@ -22,8 +22,8 @@ class ShortenUrlViewModel(private val repository: Repository) : DisposableViewMo
     private val _clickOpenWeb = SingleLiveEvent<String>()
     private val _clickConvert = SingleLiveEvent<Any>()
 
-    private val clickConvertToShorenUrl = PublishProcessor.create<Any>()
-    fun observeConvertToShorenUrl(): LiveData<Any> = LiveDataReactiveStreams.fromPublisher(clickConvertToShorenUrl)
+    private val clickConvertToShortenUrl = PublishProcessor.create<Any>()
+    fun observeConvertToShortenUrl(): LiveData<Any> = LiveDataReactiveStreams.fromPublisher(clickConvertToShortenUrl)
 
     val showResult = MutableLiveData<Boolean>()
 
@@ -51,7 +51,7 @@ class ShortenUrlViewModel(private val repository: Repository) : DisposableViewMo
     }
 
     fun clickConvert2() {
-        clickConvertToShorenUrl.onNext(Any())
+        clickConvertToShortenUrl.onNext(Unit)
     }
 
     fun clickConvert() {
