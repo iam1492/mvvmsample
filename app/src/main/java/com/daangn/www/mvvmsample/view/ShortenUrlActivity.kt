@@ -24,7 +24,13 @@ class ShortenUrlActivity : BaseActivity<ActivityShortenUrlBinding>() {
 
         val shortenUrlViewModel = ViewModelProviders.of(this, shortenUrlViewModelFactory).get(ShortenUrlViewModel::class.java)
 
+/*
         shortenUrlViewModel.clickConvert.observe(this, Observer {
+            shortenUrlViewModel.getShortenUrl(viewDataBinding.urlEditText.text.toString())
+        })
+*/
+
+        shortenUrlViewModel.observeConvertToShorenUrl().observe(this, Observer {
             shortenUrlViewModel.getShortenUrl(viewDataBinding.urlEditText.text.toString())
         })
 

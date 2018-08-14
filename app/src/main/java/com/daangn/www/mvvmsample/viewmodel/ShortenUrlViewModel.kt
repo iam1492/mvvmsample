@@ -2,6 +2,7 @@ package com.daangn.www.mvvmsample.viewmodel
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import com.daangn.www.mvvmsample.model.Repository
 import com.daangn.www.mvvmsample.utils.SingleLiveEvent
@@ -9,6 +10,9 @@ import com.rengwuxian.materialedittext.validation.METValidator
 import com.rengwuxian.materialedittext.validation.RegexpValidator
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.processors.PublishProcessor
+
+
 
 class ShortenUrlViewModel(private val repository: Repository) : DisposableViewModel() {
 
@@ -17,6 +21,9 @@ class ShortenUrlViewModel(private val repository: Repository) : DisposableViewMo
     private val _clickCopyToClipboard = SingleLiveEvent<String>()
     private val _clickOpenWeb = SingleLiveEvent<String>()
     private val _clickConvert = SingleLiveEvent<Any>()
+
+    private val clickConvertToShorenUrl = PublishProcessor.create<Any>()
+    fun observeConvertToShorenUrl(): LiveData<Any> = LiveDataReactiveStreams.fromPublisher(clickConvertToShorenUrl)
 
     val showResult = MutableLiveData<Boolean>()
 
@@ -41,6 +48,10 @@ class ShortenUrlViewModel(private val repository: Repository) : DisposableViewMo
             }, {
                 _error.postValue(it.message)
             }))
+    }
+
+    fun clickConvert2() {
+        clickConvertToShorenUrl.onNext(Any())
     }
 
     fun clickConvert() {

@@ -41,7 +41,7 @@
             android:paddingBottom="16dp"
             android:text="@string/convert"
             android:textSize="17sp"
-            android:onClick="@{() -> shortenUrlViewModel.clickConvert()}"
+            android:onClick="@{() -> shortenUrlViewModel.clickConvert2()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/urlEditText" />
