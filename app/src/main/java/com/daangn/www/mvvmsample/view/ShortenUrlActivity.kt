@@ -42,7 +42,7 @@ class ShortenUrlActivity : BaseActivity<ActivityShortenUrlBinding>() {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(clipUrl)))
         })
 
-        viewDataBinding.urlEditText.addValidator(shortenUrlViewModel.getEmailValidator(getString(R.string.error_validate_email)))
+        viewDataBinding.urlEditText.addValidator(shortenUrlViewModel.getUrlValidator(getString(R.string.error_validate_email)))
 
         viewDataBinding.shortenUrlViewModel = shortenUrlViewModel
         viewDataBinding.setLifecycleOwner(this)
