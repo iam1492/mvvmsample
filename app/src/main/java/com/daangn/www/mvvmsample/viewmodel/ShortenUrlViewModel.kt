@@ -36,10 +36,10 @@ class ShortenUrlViewModel(private val repository: Repository) : DisposableViewMo
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                showResult.postValue(true)
-                _shortenUrl.postValue(it.url)
+                showResult.value = true
+                _shortenUrl.value = it.url
             }, {
-                _error.postValue(it.message)
+                _error.value = it.message
             }))
     }
 
